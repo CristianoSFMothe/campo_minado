@@ -2,49 +2,74 @@
 import 'package:flutter/foundation.dart';
 import 'explosion_exception.dart';
 
-class Field {
+class Campos {
 
-  // Linda do campo
-  final int line;
-  
-  // Coluna do campo
-  final int column;
-  
-  // Campos vizinhos
-  final List<Field> neighbors = [];
-
-  // Se o campo estar aberto
-  bool _open = false;
+  final int linha;
+  final int coluna;
+  final List<Campos> vizinhos = [];
+  bool _aberto = false;
 
   // Se o campo estar marcado
-  bool _marked = false;
+  bool _marcado = false;
 
   // Se o campo estar minado
-  bool _undermined = false;
+  bool _minado = false;
 
   // Campo explodido é o campo responsavel pelo o usuário perter o jogo
-  bool _exploded = false;
+  bool _explodido = false;
 
   // Criando o construtor
-  Field({
-    @required this.line,
-    @required this.column
+  Campos({
+    @required this.linha,
+    @required this.coluna
   });
 
   // Função de adicionar vizinho
-  void addNeigbor(Field neigbor) {
+  void addVizinho(Campos vizinho) {
 
-    final deltaLine = (line - neigbor.line).abs();
-    final deltaColumn = (column - neigbor.column).abs();
+    final deltaLinha = (linha - vizinho.linha).abs();
+    final deltacoluna = (coluna - vizinho.coluna).abs();
 
     // Verificando se o campo recebido é o proprio campo
-    if (deltaLine == 0 && deltaColumn == 0) {
+    if (deltaLinha == 0 && deltacoluna == 0) {
       return;
     }
     
     // Verificando se são vizinhos
-    if (deltaLine <= 1 && deltaColumn <= 1) {
-      neighbors.add(neigbor);
+    if (deltaLinha <= 1 && deltacoluna <= 1) {
+      vizinhos.add(vizinho);
     }
+  }
+
+  // Metodo para uma bomba
+  void abrir() {
+    // Verificando se o campo estar aberto
+    if (_aberto) {
+      return;
+    }
+
+    _aberto = true;
+
+    // Verificando se o campo estar minado
+    if (_minado) {
+      _minado = true;
+      // Usando a exceção
+      throw ExplosionException();
+    }
+
+    // Verificando se um campo não estar minado, usando a recursividade se o campo estiver seguro
+    if (vizinhancaSegura) {
+      vizinhos.forEach((v) => v.abrir());
+    }
+  }
+
+  // Metodo para o campo minado
+  bool get minado {
+    return _minado;
+  }
+
+  // Metodo para verificar se a vizinha estar segura
+  bool get vizinhancaSegura {
+    return vizinhos.every((v) => !v.minado);
   }
 }
