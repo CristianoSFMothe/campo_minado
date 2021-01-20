@@ -2,37 +2,33 @@
 import 'package:flutter/foundation.dart';
 import 'explosion_exception.dart';
 
-class Field {
-
-  // Linda do campo
-  final int line;
+class Campo {
   
-  // Coluna do campo
-  final int column;
-  
-  // Campos vizinhos
-  final List<Field> neighbor = [];
+  final int linha;
+  final int coluna;
+  final List<Campo> viizinhos = [];
 
   // Se o campo estar aberto
-  bool _open = false;
+  bool _aberto = false;
 
   // Se o campo estar marcado
-  bool _marked = false;
+  bool _marcado = false;
 
   // Se o campo estar minado
-  bool _undermined = false;
+  bool _minado = false;
 
   // Campo explodido é o campo responsavel pelo o usuário perter o jogo
-  bool _exploded = false;
+  bool _explodido = false;
 
   // Criando o construtor
-  Field({
-    @required this.line,
-    @required this.column
+  Campo({
+    @required this.linha,
+    @required this.coluna
   });
 
   // Função de adicionar vizinho
-  void addNeigbor(Field neigbor) {
-    
+  void addLinha(Campo vizinho) {
+
+    final deltaLinha = (linha - vizinho.linha);
   }
 }
