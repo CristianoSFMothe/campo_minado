@@ -120,4 +120,9 @@ class Campos {
   bool get vizinhancaSegura {
     return vizinhos.every((v) => !v.minado);
   }
+
+  // Calculando a quantidade de linhas
+  int get qtdeMinasNaVizinhanca {
+    return vizinhos.where((v) => v.minado).length;
+  }
 }
