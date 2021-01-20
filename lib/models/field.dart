@@ -63,9 +63,50 @@ class Campos {
     }
   }
 
+  // Metodo para quando o jogador perder
+  void revelarBombas() {
+    if(_minado) {
+      _aberto = true;
+    }
+  }
+
+  // Metodo para minar
+  void minar() {
+    _minado = true;
+  }
+
+  // Alternar marcação
+  void alternarMarcacao() {
+    _marcado = !_marcado;
+  }
+
+  // Metodo para reiniciar
+  void reiniciar() {
+    _aberto = false;
+    _marcado = false;
+    _minado = false;
+    _explodido = false;
+  }
+
+
   // Metodo para o campo minado
   bool get minado {
     return _minado;
+  }
+
+
+  // Metodo para explodir um campo
+  bool get explodido {
+    return _explodido;
+  }
+  
+  // Metodo para explodir um campo
+  bool get explodido {
+    return _explodido;
+  }
+  // Metodo para explodir um campo
+  bool get explodido {
+    return _explodido;
   }
 
   // Metodo para verificar se a vizinha estar segura
