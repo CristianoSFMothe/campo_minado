@@ -99,14 +99,21 @@ class Campos {
   bool get explodido {
     return _explodido;
   }
-  
-  // Metodo para explodir um campo
-  bool get explodido {
-    return _explodido;
+
+  // Metodo para abri o campo
+  bool get aberto {
+    return _aberto;
   }
-  // Metodo para explodir um campo
-  bool get explodido {
-    return _explodido;
+  // Metodo para marcar um campo
+  bool get marcado {
+    return _marcado;
+  }
+
+  // Metodo para ver se o jogador resolveu o campo
+  bool get resolvido{
+    bool minadoEMaracado = minado && marcado;
+    bool seguroEAberto = !minado && aberto;
+    return minadoEMaracado || seguroEAberto;
   }
 
   // Metodo para verificar se a vizinha estar segura
