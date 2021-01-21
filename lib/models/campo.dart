@@ -1,6 +1,6 @@
 // A classe dos campos do area onde irá controla ele
+import 'package:campo_minado/models/explosao_exception.dart';
 import 'package:flutter/foundation.dart';
-import 'explosion_exception.dart';
 
 class Campos {
 
@@ -54,7 +54,7 @@ class Campos {
     if (_minado) {
       _minado = true;
       // Usando a exceção
-      throw ExplosionException();
+      throw ExplosaoException();
     }
 
     // Verificando se um campo não estar minado, usando a recursividade se o campo estiver seguro

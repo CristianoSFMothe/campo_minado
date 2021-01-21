@@ -1,25 +1,19 @@
+import 'package:campo_minado/models/campo.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 main() {
-
-  group('campo', () {
-
+  group('Campo', () {
     test('Abri Campo COM Explosão', () {
+      Campos c = Campos(linha: 0, coluna: 0);
+      c.minar();
 
-    });
-    
-    test('Abri Campo SEM Explosão', () {
-
-    });
-    
-    test('Adicionar NÃO vizinho', () {
-
+      expect(c.abrir, throwsException);
     });
 
-    
-    test('Adicionar  vizinho', () {
+    test('Abri Campo SEM Explosão', () {});
 
-    });
-    
+    test('Adicionar NÃO vizinho', () {});
+
+    test('Adicionar  vizinho', () {});
   });
 }
