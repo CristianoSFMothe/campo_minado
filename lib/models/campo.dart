@@ -2,11 +2,11 @@
 import 'package:campo_minado/models/explosao_exception.dart';
 import 'package:flutter/foundation.dart';
 
-class Campos {
+class Campo {
 
   final int linha;
   final int coluna;
-  final List<Campos> vizinhos = [];
+  final List<Campo> vizinhos = [];
   bool _aberto = false;
 
   // Se o campo estar marcado
@@ -19,13 +19,13 @@ class Campos {
   bool _explodido = false;
 
   // Criando o construtor
-  Campos({
+  Campo({
     @required this.linha,
     @required this.coluna
   });
 
   // Função de adicionar vizinho
-  void addVizinho(Campos vizinho) {
+  void addVizinho(Campo vizinho) {
 
     final deltaLinha = (linha - vizinho.linha).abs();
     final deltacoluna = (coluna - vizinho.coluna).abs();
