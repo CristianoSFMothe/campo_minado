@@ -19,11 +19,21 @@ class Tabuleiro {
   }) {
     _criarCampos();
     _relacionarVizinhos();
+    _sortearMinas();
   }
 
 
   // metodo para reiniciar o jogo
-  
+  void reiniiciar() {
+    _campos.forEach((c) => c.reiniciar());
+    _sortearMinas();
+  }
+
+  // Metodo para revelar bombas
+  void revelarBombas() {
+    _campos.forEach((c) => c.revelarBomba());
+  }
+
   // Metodo para criar os campos
   void _criarCampos() {
     for(int l = 0; l < linhas; l++) {
@@ -59,5 +69,13 @@ class Tabuleiro {
         _campos[i].minar();
       }
     }
+  }
+
+  List<Campo> get campos {
+    return _campos;
+  }
+
+  bool get resolvido {
+    return _campos.every((c) => c.resolvido);
   }
 }
