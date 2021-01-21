@@ -64,7 +64,7 @@ class Campo {
   }
 
   // Metodo para quando o jogador perder
-  void revelarBombas() {
+  void revelarBomba() {
     if(_minado) {
       _aberto = true;
     }
