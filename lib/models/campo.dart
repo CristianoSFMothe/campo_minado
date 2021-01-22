@@ -7,6 +7,8 @@ class Campo {
   final int linha;
   final int coluna;
   final List<Campo> vizinhos = [];
+  
+  // Se o campo estar aberto
   bool _aberto = false;
 
   // Se o campo estar marcado
@@ -43,7 +45,6 @@ class Campo {
 
   // Metodo para uma bomba
   void abrir() {
-    // Verificando se o campo estar aberto
     if (_aberto) {
       return;
     }
