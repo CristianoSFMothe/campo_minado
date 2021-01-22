@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import '../components/resultado_widget.dart';
+
+_reiniciar() {
+  print('reiniciar...');
+}
 
 class CampoMinadoApp extends StatelessWidget {
   @override
@@ -6,9 +11,11 @@ class CampoMinadoApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        appBar: AppBar(
-          title: Text('Campo Minado'),
+        appBar: ResultadoWidget(
+          venceu: false,
+          onReiniciar: _reiniciar(),
         ),
+        
         body: Container(
           child: Text('Tabuleiro'),
         ),
