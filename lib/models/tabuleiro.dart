@@ -24,7 +24,7 @@ class Tabuleiro {
 
 
   // metodo para reiniciar o jogo
-  void reiniiciar() {
+  void reiniciar() {
     _campos.forEach((c) => c.reiniciar());
     _sortearMinas();
   }
