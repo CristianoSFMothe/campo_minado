@@ -2,7 +2,6 @@ import 'package:campo_minado/components/tabuleiro_widget.dart';
 import 'package:campo_minado/models/tabuleiro.dart';
 import 'package:flutter/material.dart';
 import '../components/resultado_widget.dart';
-import '../components/campo_widget.dart';
 import '../models/campo.dart';
 import '../models/explosao_exception.dart';
 
@@ -58,6 +57,24 @@ class _CampoMinadoAppState extends State<CampoMinadoApp> {
     });
   }
 
+  // * Metodo que ira alterar o tabuleiro, de forma que possa preencher de
+  // * acordo com o tamanho do dispositivo
+  Tabuleiro _getTabuleiro(double largura, double altura) {
+    // Verificando se o tabuleiro já foi criado
+    if (_tabuleiro == null) {
+      int qtdeColunas = 15;
+      double tamanhoCampo = largura / qtdeColunas;
+      int qtdeLinhas = (altura / tamanhoCampo).floor();
+
+      _tabuleiro = Tabuleiro(
+        linhas: qtdeLinhas,
+        colunas: qtdeColunas,
+        qtdeBombas: 10,
+      );
+    }
+    return _tabuleiro;
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -68,10 +85,18 @@ class _CampoMinadoAppState extends State<CampoMinadoApp> {
           onReiniciar: _reiniciar,
         ),
         body: Container(
-          child: TabuleiroWidget(
-            tabuleiro: _tabuleiro,
-            onAbrir: _abrir,
-            onAlternarMarcacao: _alternarMarcacao,
+          color: Colors.grey,
+          child: LayoutBuilder(
+            builder: (ctx, constraints) {
+              return TabuleiroWidget(
+                tabuleiro: _getTabuleiro(
+                  constraints.maxWidth,
+                  constraints.maxHeight,
+                ),
+                onAbrir: _abrir,
+                onAlternarMarcacao: _alternarMarcacao,
+              );
+            },
           ),
         ),
       ),

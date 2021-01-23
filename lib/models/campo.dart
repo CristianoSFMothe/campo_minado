@@ -3,47 +3,37 @@ import 'package:campo_minado/models/explosao_exception.dart';
 import 'package:flutter/foundation.dart';
 
 class Campo {
-
   final int linha;
   final int coluna;
   final List<Campo> vizinhos = [];
-  
-  // Se o campo estar aberto
+
   bool _aberto = false;
-
-  // Se o campo estar marcado
   bool _marcado = false;
-
-  // Se o campo estar minado
   bool _minado = false;
-
-  // Campo explodido é o campo responsavel pelo o usuário perter o jogo
   bool _explodido = false;
 
-  // Criando o construtor
   Campo({
     @required this.linha,
-    @required this.coluna
+    @required this.coluna,
   });
 
   // Função de adicionar vizinho
-  void addVizinho(Campo vizinho) {
-
+  void adicionarVizinho(Campo vizinho) {
     final deltaLinha = (linha - vizinho.linha).abs();
-    final deltacoluna = (coluna - vizinho.coluna).abs();
+    final deltaColuna = (coluna - vizinho.coluna).abs();
 
     // Verificando se o campo recebido é o proprio campo
-    if (deltaLinha == 0 && deltacoluna == 0) {
+    if (deltaLinha == 0 && deltaColuna == 0) {
       return;
     }
-    
+
     // Verificando se são vizinhos
-    if (deltaLinha <= 1 && deltacoluna <= 1) {
+    if (deltaLinha <= 1 && deltaColuna <= 1) {
       vizinhos.add(vizinho);
     }
   }
 
-  // Metodo para uma bomba
+  // Metodo abrir
   void abrir() {
     if (_aberto) {
       return;
@@ -51,9 +41,9 @@ class Campo {
 
     _aberto = true;
 
-    // Verificando se o campo estar minado
+    // Verificando se o campo estar mina
     if (_minado) {
-      _minado = true;
+      _explodido = true;
       // Usando a exceção
       throw ExplosaoException();
     }
@@ -66,7 +56,7 @@ class Campo {
 
   // Metodo para quando o jogador perder
   void revelarBomba() {
-    if(_minado) {
+    if (_minado) {
       _aberto = true;
     }
   }
@@ -89,41 +79,34 @@ class Campo {
     _explodido = false;
   }
 
-
-  // Metodo para o campo minado
   bool get minado {
     return _minado;
   }
 
-
-  // Metodo para explodir um campo
   bool get explodido {
     return _explodido;
   }
 
-  // Metodo para abri o campo
   bool get aberto {
     return _aberto;
   }
-  // Metodo para marcar um campo
+
   bool get marcado {
     return _marcado;
   }
 
-  // Metodo para ver se o jogador resolveu o campo
-  bool get resolvido{
-    bool minadoEMaracado = minado && marcado;
+  bool get resolvido {
+    bool minadoEMarcado = minado && marcado;
     bool seguroEAberto = !minado && aberto;
-    return minadoEMaracado || seguroEAberto;
+    return minadoEMarcado || seguroEAberto;
   }
 
-  // Metodo para verificar se a vizinha estar segura
+  
   bool get vizinhancaSegura {
     return vizinhos.every((v) => !v.minado);
   }
 
-  // Calculando a quantidade de linhas
   int get qtdeMinasNaVizinhanca {
     return vizinhos.where((v) => v.minado).length;
-  }
+  }  
 }

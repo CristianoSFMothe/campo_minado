@@ -22,7 +22,7 @@ main() {
 
       Campo c1 = Campo(linha: 0, coluna: 1);
       Campo c2 = Campo(linha: 1, coluna: 3);
-      c1.addVizinho(c2);
+      c1.adicionarVizinho(c2);
       expect(c1.vizinhos.isEmpty, isTrue);
       
     });
@@ -34,9 +34,9 @@ main() {
       Campo c3 = Campo(linha: 2, coluna: 2);
       Campo c4 = Campo(linha: 4, coluna: 4);
 
-      c1.addVizinho(c2);
-      c1.addVizinho(c3);
-      c1.addVizinho(c4);
+      c1.adicionarVizinho(c2);
+      c1.adicionarVizinho(c3);
+      c1.adicionarVizinho(c4);
 
       expect(c1.vizinhos.length, 3);
     });
@@ -53,9 +53,9 @@ main() {
       Campo c4 = Campo(linha: 4, coluna: 4);
       c4.minar();
 
-      c1.addVizinho(c2);
-      c1.addVizinho(c3);
-      c1.addVizinho(c4);
+      c1.adicionarVizinho(c2);
+      c1.adicionarVizinho(c3);
+      c1.adicionarVizinho(c4);
 
       expect(c1.qtdeMinasNaVizinhanca, 2);
     });
