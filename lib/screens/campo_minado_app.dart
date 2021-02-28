@@ -69,7 +69,7 @@ class _CampoMinadoAppState extends State<CampoMinadoApp> {
       _tabuleiro = Tabuleiro(
         linhas: qtdeLinhas,
         colunas: qtdeColunas,
-        qtdeBombas: 3,
+        qtdeBombas: 10,
       );
     }
     return _tabuleiro;
